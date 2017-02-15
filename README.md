@@ -6,4 +6,7 @@
 Server.js:前端服务器的主要功能 包括路由 接受，发送post get请求等<br>
 mongodb.js:包括mongodb数据库连接插入和查找功能的实现<br>
 mysql.js:包括mysql数据库的查找功能<br>
-Main.js:主文件
+Main.js:主文件<br>
+后端：composor.php:php编译执行的接口<br>
+index.php:接受post请求并处理<br>
+robot.php:图灵机器人的接口(前端暂未实现)<br>

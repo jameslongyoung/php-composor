@@ -1,0 +1,2 @@
+PHP Parse error:  syntax error, unexpected 'helo' (T_STRING) in /usr/share/nginx/html/TuringRobot/php_file/123.php on line 1
+HelloWorldPHP Parse error:  syntax error, unexpected 'helo' (T_STRING) in /usr/share/nginx/html/TuringRobot/php_file/123.php on line 1

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>php composor</title>
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+        .head{
+            background-color: black;
+            height: 70px;
+        }
+        .head2 h1{
+            margin:0px 0px 0px 0px ;
+            padding:25px 0px 0px 100px ;
+            color: darkgray;
+            font-family: 新宋体;
+            font-size: medium;
+            float: left;
+        }
+        .head2 p
+        {
+            float: left;
+            position: relative;
+            left:800px;
+            top:10px;
+            color: darkgray;
+            font-weight: bold;
+        }
+        .head2 p a
+        {
+            margin:0 10px;
+            font-family: 新宋体;
+            font-size: medium;
+            color: darkgray;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer2
+        {
+             font-size: 5px;
+        }
+        .footer
+        {
+            margin: 500px 0 0 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="head2">
+            <h1>
+                php代码测试
+            </h1>
+            <p>
+                <a href="">首页</a> | <a href="">关于</a>| <a href="contact.html" target="_blank">联系</a>
+            </p>
+        </div>
+    </div>
+    <div class="body">
+        <div class="form">
+            <form action="" onsubmit="return checkpost2()">
+                <textarea id="ide"  style="background-color: black; color: white;margin: 50px 50px 50px 150px;width: 500px;height: 500px;float :left" >
+                </textarea>
+                <textarea id="result" style="float: left ;width:500px ;height: 500px; margin-top: 50px; margin-left: 50px; " disabled="disabled" >
+                </textarea>
+                <button onclick="ajax()" type="button" name="console"  style="margin-top: 50px; margin-left:-575px ; height: 30px;width: 50px;position: relative" >执行</button>
+                <button id="copy" type="button" style="position:relative;bottom:-50px ;left: -55px;height: 30px; width: 50px" onclick="Copy()">
+                    复制
+                </button>
+                <button id="reload" type="button" style="position: relative ;bottom: -100px;left: -110px;height: 30px;width: 50px;"  onclick="Reload2()">
+                    重置
+                </button>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        function ajax() {
+            if(checkpost2())
+            {
+                var xmlhttp=new XMLHttpRequest();
+                var data=document.getElementById('ide').value;
+                var json_data={
+                    type:"compose",
+                    msg:data,
+                    user_id:"file"
+                };
+                xmlhttp.open("post","post.js",true);
+                xmlhttp.onreadystatechange=function () {
+                    if(xmlhttp.status==200&&xmlhttp.readyState==4)
+                    {
+                        var result=JSON.parse(xmlhttp.responseText);
+                        if(result.code=="200")
+                        {
+                            document.getElementById("result").value=result.data;
+                        }
+
+                        // document.getElementById("result").value=xmlhttp.responseText;
+                    }
+
+                }
+                xmlhttp.send(JSON.stringify(json_data));
+            }
+            else
+            {
+                alert("please input the text");
+            }
+
+
+        }
+        function checkpost2() {
+            var content= document.getElementById("ide").value;
+            var flag=content;
+            content=content.replace(/(^\s*)|(\s*$)/g,"");
+            if(content.length==0)
+            {
+                return false;
+            }
+            else
+            {
+               localStorage.code=flag;
+                return true;
+            }
+
+        }
+        function Copy() {
+            var content=document.getElementById("ide");
+            content.select();
+            document.execCommand("Copy");
+            alert("已经复制");
+        }
+        function Reload() {
+            if(window.localStorage.code)
+            {
+                var content=window.localStorage.code;
+                document.getElementById("ide").value=content;
+            }
+            else
+            {
+                document.getElementById("ide").value="<?php \n echo \"HelloWorld\"; \n?>";
+            }
+        }
+        function Reload2() {
+            document.getElementById("ide").value="<?php \n echo \"HelloWorld\"; \n?>";
+        }
+        Reload();
+    </script>
+<div class="footer">
+    <div class="footer2">
+        <p>
+            Copyright © github.com/jameslongyoung All rights reserved.
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>contact the author</title>
+    <style type="text/css">
+        body{
+            padding:0px;
+            margin: 0px;
+        }
+        .head2{
+            background-color: antiquewhite;
+            height: 80px;
+        }
+        .head2 h1
+        {
+            color: slateblue;
+            margin: 0px 50px ;
+            padding: 10px 0px;
+        }
+        .head2 a{
+            position: relative;
+            left: 1000px;
+            bottom: 0px;
+            top: -40px;
+        }
+        .feedback
+        {
+            margin: 100px 500px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="head2">
+            <h1>客服系统</h1>
+            <a href="" id="robot">生活机器人（体验版）</a>
+        </div>
+    </div>
+    <div class="feedback">
+        <form action="Server.js" method="post" id="sug" onsubmit="return validation()">
+            反馈意见<br><textarea style="height: 200px; width: 400px" form="sug" name="suggestions" id="areas"> </textarea><br><br>
+            联系方式(非必需)：<br><input type="tel" name="tel" value="" ><br><br>
+            <input type="submit" >
+        </form>
+        <script>
+            function validation() {
+                var area_text=document.getElementById("areas").value;
+                area_text=area_text.replace(/(^\s*)|(\s*$)/g,"");        //去掉首尾空格
+                if(area_text.length==0)
+                {
+                    alert("please input the content");
+                    return false;
+                }
+                return true;
+
+            }
+        </script>
+    </div>
+
+</body>
+</html>
